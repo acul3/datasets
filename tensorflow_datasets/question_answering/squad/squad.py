@@ -99,21 +99,24 @@ def _generate_v2_examples(filepath):
 
           answer_starts = [answer["answer_start"] for answer in qa["answers"]]
           answers = [answer["text"].strip() for answer in qa["answers"]]
-
+          if not answers:
+            answers = ['<NO ANSWER>']
+          if not answer_starts:
+            answer_starts = [-1]
           yield id_, {
-              "title": title,
-              "context": context,
-              "question": question,
-              "id": id_,
-              "plausible_answers": {
-                  "answer_start": plausible_answer_starts,
-                  "text": plausible_answers,
-              },
-              "answers": {
-                  "answer_start": answer_starts,
-                  "text": answers,
-              },
-              "is_impossible": is_impossible,
+                "title": title,
+                "context": context,
+                "question": question,
+                "id": id_,
+                "plausible_answers": {
+                    "answer_start": plausible_answer_starts,
+                    "text": plausible_answers,
+                },
+                "answers": {
+                    "answer_start": answer_starts,
+                    "text": answers,
+                },
+                "is_impossible": is_impossible,
           }
 
 
@@ -169,8 +172,8 @@ class Squad(tfds.core.GeneratorBasedBuilder):
   def _split_generators(self, dl_manager):
     """Returns SplitGenerators."""
     urls_to_download = {
-        "train": os.path.join(_URL, self.builder_config.train_file),
-        "dev": os.path.join(_URL, self.builder_config.dev_file)
+        "train": 'https://github.com/acul3/squad-test/raw/main/train-v2.0.json',
+        "dev": 'https://github.com/acul3/squad-test/raw/main/dev-v2.0.json'
     }
     downloaded_files = dl_manager.download_and_extract(urls_to_download)
 
