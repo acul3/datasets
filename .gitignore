@@ -27,3 +27,4 @@ dist/
 
 # Visual Studio Code
 .vscode
+.vs/slnx.sqlite

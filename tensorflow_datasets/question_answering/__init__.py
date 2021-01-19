@@ -29,3 +29,4 @@ from tensorflow_datasets.question_answering.trivia_qa import TriviaQA
 from tensorflow_datasets.question_answering.tydi_qa import TydiQA
 from tensorflow_datasets.question_answering.web_questions import WebQuestions
 from tensorflow_datasets.question_answering.xquad import Xquad
+from tensorflow_datasets.question_answering.qgen import Qgen
