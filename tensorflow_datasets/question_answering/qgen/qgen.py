@@ -64,18 +64,20 @@ def process_e2e_qg(paragraph):
 
 def _generate_v2_examples(filepath):
   """Returns v2 examples."""
+  _id = 0
   with tf.io.gfile.GFile(filepath) as f:
     squad = json.load(f)
     for article in squad["data"]:
       title = article.get("title", "").strip()
-      for _id,paragraph in enumerate(article["paragraphs"]):
+      for paragraph in article["paragraphs"]:
         context = paragraph["context"].strip()
-        _id = str(_id)
         yield _id,{
                 "title": title,
+                "id":str(_id),
                 "context": context,
                 "question": process_e2e_qg(paragraph),
         }
+        _id += 1
 
 
 class QgenConfig(tfds.core.BuilderConfig):
