@@ -68,10 +68,10 @@ def _generate_v2_examples(filepath):
     squad = json.load(f)
     for article in squad["data"]:
       title = article.get("title", "").strip()
-      for paragraph in article["paragraphs"]:
+      for _id,paragraph in enumerate(article["paragraphs"]):
         context = paragraph["context"].strip()
-        id_ = f"{random.randrange(1, 10**16):16}"
-        yield id_, {
+        _id = str(_id)
+        yield _id,{
                 "title": title,
                 "context": context,
                 "question": process_e2e_qg(paragraph),
