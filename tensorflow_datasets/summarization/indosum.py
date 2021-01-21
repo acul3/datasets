@@ -59,7 +59,7 @@ def _generate_v2_examples(filepath):
   _id = 0
   with tf.io.gfile.GFile(filepath) as f:
     idsum = json.load(f)
-    for article in idsum["data"]:
+    for article in idsum:
       yield _id,{
           "id":str(_id),
           "paragraph": article["paragraph"],
