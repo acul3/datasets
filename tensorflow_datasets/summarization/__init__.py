@@ -31,3 +31,4 @@ from tensorflow_datasets.summarization.samsum import Samsum
 from tensorflow_datasets.summarization.scientific_papers import ScientificPapers
 from tensorflow_datasets.summarization.wikihow import Wikihow
 from tensorflow_datasets.summarization.xsum import Xsum
+from tensorflow_datasets.summarization.indosum import IdSum
