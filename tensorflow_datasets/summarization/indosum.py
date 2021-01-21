@@ -62,7 +62,7 @@ def _generate_v2_examples(filepath):
     for article in idsum:
       yield _id,{
           "id":str(_id),
-          "paragraph": article["paragraph"],
+          "paragraph": article["paragraphs"],
           "summary": article["summary"],
       }
       _id += 1
